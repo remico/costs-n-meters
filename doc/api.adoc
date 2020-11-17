@@ -1,0 +1,11 @@
+## Basic API
+
+ Issue: [CNM-15]
+
+|===
+| Type | URL | Description
+
+| GET | `/api/records` | Get all records
+| POST | `/api/record` | Add a new record for today's date
+| DELETE | `/api/record/{date}` | Delete a record for a particular _date_
+|===
