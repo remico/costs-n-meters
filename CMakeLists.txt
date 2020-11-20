@@ -34,19 +34,19 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 
 if(ANDROID)
     add_library(${PROJECT} SHARED
-      src/main.cpp
-      src/qml.qrc
-      src/assets.qrc
+      src/qt/main.cpp
+      src/qt/qml.qrc
+      src/qt/assets.qrc
     )
 else()
     add_executable(${PROJECT}
-      src/main.cpp
-      src/qml.qrc
-      src/assets.qrc
+      src/qt/main.cpp
+      src/qt/qml.qrc
+      src/qt/assets.qrc
     )
 endif()
 
-set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/qml CACHE PATH "")
+set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/qt/qml CACHE PATH "")
 
 target_compile_definitions(${PROJECT}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
