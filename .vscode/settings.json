@@ -1,5 +1,11 @@
 {
     "python.pythonPath": "venv/bin/python",
     "cmake.configureOnOpen": false,
-    "cmake.configureOnEdit": false
+    "cmake.configureOnEdit": false,
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "cmake.configureSettings": {
+        "QT_QMAKE_EXECUTABLE": "${env:QT_HOME}/android/bin/qmake",
+        "CMAKE_PREFIX_PATH": "${env:QT_HOME}/android",
+        "CMAKE_FIND_ROOT_PATH": "${env:QT_HOME}/android",
+    },
 }

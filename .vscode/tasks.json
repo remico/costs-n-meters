@@ -1,0 +1,132 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cmake: build",
+            "group": "build",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "${command:cmake.tasksBuildCommand}"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "android",
+                "revealProblems": "onProblem"
+            }
+        },
+        {
+            "label": "android: build APK",
+            "dependsOn": "cmake: build",
+            "type": "shell",
+            "group": "build",
+            "command": "$QT_HOME/android/bin/androiddeployqt",
+            "args": [
+                "--input",
+                "${command:cmake.buildDirectory}/android_deployment_settings.json",
+                "--output",
+                "${command:cmake.buildDirectory}/android-build",
+                "--android-platform",
+                "${input:android_platfotm}",
+                "--jdk",
+                "$JAVA_HOME",
+                "--gradle"
+            ],
+            "options": {
+                "env": {
+                    "QT_HOME": "${env:HOME}/Qt/5.15.1",
+                    "JAVA_HOME": "/usr/lib/jvm/java-1.8.0-openjdk-amd64",
+                }
+            },
+            "problemMatcher": ["$gradle"],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "android",
+                "revealProblems": "onProblem"
+            }
+        },
+        {
+            "label": "android: run app",
+            "dependsOn": "android: build APK",
+            "type": "shell",
+            "group": "build",
+            "command": "$QT_HOME/android/bin/androiddeployqt",
+            "args": [
+                "--input",
+                "${command:cmake.buildDirectory}/android_deployment_settings.json",
+                "--output",
+                "${command:cmake.buildDirectory}/android-build",
+                "--verbose",
+                "--gradle",
+                "--no-build",
+                "--reinstall",
+                "--device",
+                "${input:android_device}"
+            ],
+            "options": {
+                "env": {
+                    "QT_HOME": "${env:HOME}/Qt/5.15.1",
+                }
+            },
+            "problemMatcher": ["$gradle"],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "android",
+                "revealProblems": "onProblem"
+            }
+        },
+        {
+            "label": "android: devices",
+            "type": "shell",
+            "command": "adb devices -l | grep 'device ' | cut -d' ' -f1",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "android"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "android_platfotm",
+            "type": "pickString",
+            "description": "Android platform for building:",
+            "default": "android-29",
+            "options": [
+                "android-27",
+                "android-29",
+            ]
+        },
+        {
+            "id": "android_device",
+            "type": "promptString",
+            "description": "Target Android device:",
+            "default": "emulator-5554"
+        }
+    ]
+}
