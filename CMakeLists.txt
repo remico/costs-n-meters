@@ -18,7 +18,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # They need to be set before the find_package(Qt5 ...) call.
 
 if(ANDROID)
-    set(QT_ROOT_DIR $ENV{QT_HOME}/android)
+    set(QT_ROOT_DIR "$ENV{QT_HOME}/android")
 
     set(CMAKE_FIND_ROOT_PATH ${QT_ROOT_DIR} CACHE PATH "")
     set(CMAKE_PREFIX_PATH ${QT_ROOT_DIR} CACHE PATH "")
@@ -42,7 +42,7 @@ set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/qt/qml CACHE PATH "")
 if(ANDROID)
     add_library(${PROJECT} SHARED
         src/qt/main.cpp
-        src/qt/qml.qrc
+        # src/qt/qml.qrc
         src/qt/assets.qrc
     )
 else()
