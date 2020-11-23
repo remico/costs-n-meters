@@ -1,0 +1,6 @@
+[
+    {
+        "name": "Android",
+        "toolchainFile": "${env:HOME}/Android/Sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake"
+    }
+]
