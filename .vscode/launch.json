@@ -4,6 +4,10 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            // ${env:HOME}/Android/Sdk/platform-tools/adb -s emulator-5554 pull /system/bin/app_process64 /home/user/Dvlp/costs_n_meters/build/build-costs_n_meters-Emulator-Debug/app_process
+            // ${env:HOME}/Android/Sdk/platform-tools/adb -s emulator-5554 pull /system/bin/linker64 /home/user/Dvlp/costs_n_meters/build/build-costs_n_meters-Emulator-Debug/linker64
+            // ${env:HOME}/Android/Sdk/platform-tools/adb -s emulator-5554 pull /system/lib64/libc.so /home/user/Dvlp/costs_n_meters/build/build-costs_n_meters-Emulator-Debug/libc.so
+        }
     ]
 }

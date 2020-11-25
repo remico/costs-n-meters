@@ -1,6 +1,20 @@
 [
     {
         "name": "Android",
-        "toolchainFile": "${env:HOME}/Android/Sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake"
+        "toolchainFile": "${env:HOME}/Android/Sdk/ndk/21.1.6352462/build/cmake/android.toolchain.cmake",
+        "cmakeSettings": {
+            "ANDROID_SDK": "${env:ANDROID_SDK}",
+            "ANDROID_NDK": "${env:ANDROID_NDK}",
+            "ANDROID_STL": "c++_shared",
+            "CMAKE_CXX_COMPILER": "${env:ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++",
+            "CMAKE_C_COMPILER": "${env:ANDROID_NDK}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang",
+            "CMAKE_FIND_ROOT_PATH": "${env:QT_HOME}/android",
+            "CMAKE_PREFIX_PATH": "${env:QT_HOME}/android",
+            "QT_QMAKE_EXECUTABLE": "${env:QT_HOME}/android/bin/qmake"
+        },
+        "environmentVariables": {
+            "ANDROID_SDK": "${userHome}/Android/Sdk",
+            "ANDROID_NDK": "${userHome}/Android/Sdk/ndk/21.1.6352462"
+        }
     }
 ]

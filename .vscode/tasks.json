@@ -25,7 +25,7 @@
             }
         },
         {
-            "label": "android: build APK",
+            "label": "android: create .apk",
             "dependsOn": "cmake: build",
             "type": "shell",
             "group": "build",
@@ -43,7 +43,7 @@
             ],
             "options": {
                 "env": {
-                    "QT_HOME": "${env:HOME}/Qt/5.15.1",
+                    "QT_HOME": "${env:HOME}/Qt/5.15.2",
                     "JAVA_HOME": "/usr/lib/jvm/java-1.8.0-openjdk-amd64",
                 }
             },
@@ -79,7 +79,7 @@
             ],
             "options": {
                 "env": {
-                    "QT_HOME": "${env:HOME}/Qt/5.15.1",
+                    "QT_HOME": "${env:HOME}/Qt/5.15.2",
                 }
             },
             "problemMatcher": ["$gradle"],
@@ -95,7 +95,7 @@
             }
         },
         {
-            "label": "android: devices",
+            "label": "android: list devices",
             "type": "shell",
             "command": "adb devices -l | grep 'device ' | cut -d' ' -f1",
             "group": "build",

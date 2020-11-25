@@ -2,7 +2,6 @@
     "python.pythonPath": "venv/bin/python",
     "cmake.configureOnOpen": false,
     "cmake.configureOnEdit": false,
-    "cmake.buildDirectory": "${workspaceFolder}/build/${variant:buildType}-${variant:abi}",
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
         "cmake-variants.json": "jsonc",
