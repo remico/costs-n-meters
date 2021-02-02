@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "android",
+            "type": "android",
+            "request": "launch",
+            "apkFile": "${workspaceRoot}/build/debug-x86_64/android-build/build/outputs/apk/debug/android-build-debug.apk",
+            "appSrcRoot": "${workspaceRoot}/src/qt/android",
+            "autoStartADB": true,
+
             // ${env:HOME}/Android/Sdk/platform-tools/adb -s emulator-5554 pull /system/bin/app_process64 /home/user/Dvlp/costs_n_meters/build/build-costs_n_meters-Emulator-Debug/app_process
             // ${env:HOME}/Android/Sdk/platform-tools/adb -s emulator-5554 pull /system/bin/linker64 /home/user/Dvlp/costs_n_meters/build/build-costs_n_meters-Emulator-Debug/linker64
             // ${env:HOME}/Android/Sdk/platform-tools/adb -s emulator-5554 pull /system/lib64/libc.so /home/user/Dvlp/costs_n_meters/build/build-costs_n_meters-Emulator-Debug/libc.so

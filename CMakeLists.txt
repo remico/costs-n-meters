@@ -36,13 +36,24 @@ if(ANDROID)
     add_library(${PROJECT} SHARED
         src/qt/main.cpp
         # src/qt/qml.qrc
-        src/qt/assets.qrc
+        src/qt/rc.qrc
     )
+
+    add_custom_target(copy_qml_assets
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/src/qt/qml ${ANDROID_PACKAGE_SOURCE_DIR}/assets/qml
+    )
+    add_dependencies(${PROJECT} copy_qml_assets)
+
+    add_custom_target(copy_jar_libs
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/libs ${ANDROID_PACKAGE_SOURCE_DIR}/libs
+    )
+    add_dependencies(${PROJECT} copy_jar_libs)
+
 else()
     add_executable(${PROJECT}
         src/qt/main.cpp
         src/qt/qml.qrc
-        src/qt/assets.qrc
+        src/qt/rc.qrc
     )
 endif()
 
