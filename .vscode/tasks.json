@@ -10,7 +10,7 @@
             "command": "bash",
             "args": [
                 "-c",
-                "${command:cmake.tasksBuildCommand}"
+                "${command:cmake.tasksBuildCommand} ${workspaceFolderBasename}_prepare_apk_dir"
             ],
             "problemMatcher": [],
             "presentation": {
@@ -26,13 +26,13 @@
         },
         {
             "label": "android: create .apk",
-            "dependsOn": "cmake: build",
+            // "dependsOn": "cmake: build",
             "type": "shell",
             "group": "build",
-            "command": "$QT_HOME/android/bin/androiddeployqt",
+            "command": "${env:QT_HOME}/gcc_64/bin/androiddeployqt",
             "args": [
                 "--input",
-                "${command:cmake.buildDirectory}/android_deployment_settings.json",
+                "${command:cmake.buildDirectory}/android-${workspaceFolderBasename}-deployment-settings.json",
                 "--output",
                 "${command:cmake.buildDirectory}/android-build",
                 "--android-platform",
@@ -43,8 +43,7 @@
             ],
             "options": {
                 "env": {
-                    "QT_HOME": "${env:HOME}/Qt/5.15.2",
-                    "JAVA_HOME": "/usr/lib/jvm/java-1.8.0-openjdk-amd64",
+                    "JAVA_HOME": "/usr/lib/jvm/java-8-openjdk",
                 }
             },
             "problemMatcher": ["$gradle"],
@@ -61,13 +60,13 @@
         },
         {
             "label": "android: run app",
-            "dependsOn": "android: build APK",
+            // "dependsOn": "android: create .apk",
             "type": "shell",
             "group": "build",
-            "command": "$QT_HOME/android/bin/androiddeployqt",
+            "command": "${env:QT_HOME}/gcc_64/bin/androiddeployqt",
             "args": [
                 "--input",
-                "${command:cmake.buildDirectory}/android_deployment_settings.json",
+                "${command:cmake.buildDirectory}/android-${workspaceFolderBasename}-deployment-settings.json",
                 "--output",
                 "${command:cmake.buildDirectory}/android-build",
                 "--verbose",
@@ -78,9 +77,7 @@
                 "${input:android_device}"
             ],
             "options": {
-                "env": {
-                    "QT_HOME": "${env:HOME}/Qt/5.15.2",
-                }
+                "env": {}
             },
             "problemMatcher": ["$gradle"],
             "presentation": {
@@ -116,10 +113,8 @@
             "id": "android_platfotm",
             "type": "pickString",
             "description": "Android platform for building:",
-            "default": "android-29",
             "options": [
-                "android-27",
-                "android-29",
+                "android-30",
             ]
         },
         {
@@ -127,6 +122,15 @@
             "type": "promptString",
             "description": "Target Android device:",
             "default": "emulator-5554"
+        },
+        {
+            "id": "qt_android_arch",
+            "type": "pickString",
+            "description": "Qt android arch",
+            "options": [
+                "x86_64",
+                "arm64_v8a"
+            ]
         }
     ]
 }

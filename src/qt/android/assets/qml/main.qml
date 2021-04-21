@@ -46,7 +46,8 @@ ApplicationWindow {
                 text: qsTr("Settings")
                 width: parent.width
                 onClicked: {
-                    var settingsScreen = Qt.createComponent("assets:/qml/AppScreens/ScreenSettings.qml")
+                    var file = assets + "/qml/AppScreens/ScreenSettings.qml"
+                    var settingsScreen = Qt.createComponent(file)
                     stackView.push(settingsScreen)
                     drawer.close()
                 }

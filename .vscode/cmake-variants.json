@@ -17,7 +17,7 @@
                 "short": "MinSizeRel",
                 "long": "Optimize for smallest binary size - exclude debug information.",
                 "buildType": "MinSizeRel"
-            },
+            }
             // "reldeb": {
             //   "short": "RelWithDebInfo",
             //   "long": "Optimize for speed - include debug information.",
@@ -32,12 +32,18 @@
                 "short": "x86_64",
                 "settings": {
                     "ANDROID_ABI": "x86_64"
+                },
+                "env": {
+                    "QT_ANDROID_ABI_DIR": "${env:QT_HOME}/android_x86_64"
                 }
             },
             "arm64-v8a": {
                 "short": "arm64-v8a",
                 "settings": {
                     "ANDROID_ABI": "arm64-v8a"
+                },
+                "env": {
+                    "QT_ANDROID_ABI_DIR": "${env:QT_HOME}/android_arm64_v8a"
                 }
             }
         }
